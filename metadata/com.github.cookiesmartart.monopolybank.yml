@@ -1,0 +1,52 @@
+# DRAFT F-Droid build recipe.
+#
+# This file does NOT belong in this repository long-term — F-Droid metadata lives in the
+# separate `fdroiddata` repository (https://gitlab.com/fdroid/fdroiddata), submitted via merge
+# request. It's kept here, at the exact path it needs (`metadata/<applicationId>.yml`), purely
+# as a ready-to-copy starting point. See FDROID.md for the full submission process.
+#
+# Before submitting: update `commit:` to the actual git tag of the release you want F-Droid to
+# build, and double check CurrentVersion/CurrentVersionCode match that tag.
+
+Categories:
+  - Games
+License: MIT
+AuthorName: cookiesmartart
+SourceCode: https://github.com/cookiesmartart/monopoly-bank
+IssueTracker: https://github.com/cookiesmartart/monopoly-bank/issues
+
+# AI-transparency notice, deliberately also surfaced here (not just in the GitHub README) so it's
+# visible to users who find the app through F-Droid without ever visiting the source repo.
+Summary: Digital banker for Monopoly game nights, built with AI assistance (Claude Code)
+Description: |
+    Monopoly Bank replaces the paper money in Monopoly board game nights with a simple, fully
+    local digital banker for 2-8 players.
+
+    This app was (largely) built with the help of AI (Claude Code). See the project's README
+    for details.
+
+    Features:
+
+    * Fully offline: no network access, no accounts, no analytics
+    * Manual banking with a quick-entry keypad and shortcuts for common amounts
+    * Negative balances allowed (with a warning), matching the real rules
+    * Optional NFC tap-to-pay; manual entry always works as a fallback
+    * Transaction history, per player and globally
+    * Light and dark mode, optional sound/vibration feedback
+    * English, Dutch, and Spanish included
+
+RepoType: git
+Repo: https://github.com/cookiesmartart/monopoly-bank.git
+
+Builds:
+  - versionName: 1.0.0
+    versionCode: 1
+    commit: v1.0.0
+    subdir: app
+    gradle:
+      - yes
+
+AutoUpdateMode: Version
+UpdateCheckMode: Tags
+CurrentVersion: 1.0.0
+CurrentVersionCode: 1

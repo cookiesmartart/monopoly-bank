@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="monopoly_green">#1B6B33</color>
+    <color name="monopoly_red">#B0281C</color>
+    <color name="monopoly_gold">#C68A00</color>
+    <color name="paper_light">#FBF8F0</color>
+    <color name="table_dark">#16130D</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+</resources>

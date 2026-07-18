@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Monopoly Bank</string>
+
+    <!-- Main menu -->
+    <string name="main_menu_tagline">Jouw digitale bankier voor spelavonden</string>
+    <string name="main_menu_continue">Doorgaan met spel</string>
+    <string name="main_menu_continue_players">%1$d spelers</string>
+    <string name="main_menu_new_game_section">Nieuw spel starten</string>
+    <string name="main_menu_mode_manual_title">Handmatig</string>
+    <string name="main_menu_mode_manual_desc">Voer bedragen zelf in via het toetsenbord</string>
+    <string name="main_menu_mode_nfc_title">NFC</string>
+    <string name="main_menu_mode_nfc_desc">Tik NFC-tags tegen je toestel om te betalen</string>
+    <string name="main_menu_mode_nfc_unavailable">NFC is niet beschikbaar op dit toestel</string>
+    <string name="main_menu_replace_game_title">Nieuw spel starten?</string>
+    <string name="main_menu_replace_game_message">Dit vervangt je huidige spel. Weet je het zeker?</string>
+
+    <!-- Setup -->
+    <string name="setup_title">Nieuw spel</string>
+    <string name="setup_player_count">Aantal spelers</string>
+    <string name="setup_player_name_hint">Naam speler %1$d</string>
+    <string name="setup_starting_balance">Startkapitaal</string>
+    <string name="setup_start_game">Start spel</string>
+
+    <!-- Home -->
+    <string name="home_title">Saldi</string>
+    <string name="home_pay_bank">Betaal aan bank</string>
+    <string name="home_receive_bank">Ontvang van bank</string>
+    <string name="home_transfer">Overmaken</string>
+    <string name="home_negative_balance_warning">Negatief saldo</string>
+    <string name="home_new_game">Nieuw spel</string>
+    <string name="home_new_game_confirm_message">Weet je zeker dat je een nieuw spel wilt starten? Het huidige spel gaat verloren.</string>
+    <string name="home_declare_bankrupt">Failliet verklaren</string>
+    <string name="home_bankrupt_confirm_title">%1$s failliet verklaren?</string>
+    <string name="home_bankrupt_confirm_message">Gebruik dit zodra %1$s niet meer kan betalen en niets meer heeft om te verkopen of te hypothekeren. De resterende schuld vervalt en %1$s is klaar met spelen. Eerdere transacties blijven zichtbaar in de geschiedenis.</string>
+    <string name="home_winner_title">%1$s wint!</string>
+    <string name="home_winner_back_to_menu">Terug naar hoofdmenu</string>
+
+    <!-- Transaction -->
+    <string name="transaction_amount">Bedrag</string>
+    <string name="transaction_confirm">Bevestigen</string>
+    <string name="transaction_cancel">Annuleren</string>
+    <string name="transaction_large_amount_warning">Dit is een groot bedrag. Weet je het zeker?</string>
+    <string name="transaction_select_recipient">Kies ontvanger</string>
+    <string name="transaction_select_sender">Kies betaler</string>
+
+    <!-- History -->
+    <string name="history_title">Transactiegeschiedenis</string>
+    <string name="history_empty">Nog geen transacties</string>
+    <string name="history_filter_all">Alle spelers</string>
+    <string name="bank_label">Bank</string>
+
+    <!-- NFC -->
+    <string name="nfc_not_available">NFC is niet beschikbaar op dit toestel</string>
+    <string name="nfc_scan_prompt">Houd de tag tegen het toestel</string>
+    <string name="nfc_link_tag">Koppel tag aan speler</string>
+    <string name="nfc_manage_tags">Tags beheren</string>
+    <string name="nfc_unlink">Ontkoppelen</string>
+    <string name="nfc_not_linked">Niet gekoppeld</string>
+    <string name="nfc_linked_status">Gekoppeld</string>
+    <string name="nfc_unknown_tag">Deze tag is niet gekoppeld aan een speler</string>
+    <string name="nfc_cancel_scan">Annuleren</string>
+    <string name="nfc_direction_pay">Betalen</string>
+    <string name="nfc_direction_receive">Ontvangen</string>
+    <string name="nfc_ready_prompt">Klaar — houd een tag tegen het toestel</string>
+    <string name="link_tags_title">NFC-tags koppelen</string>
+    <string name="link_tags_instruction">Koppel een tag aan elke speler voordat je begint</string>
+    <string name="link_tags_progress">%1$d van %2$d spelers gekoppeld</string>
+    <string name="action_continue">Doorgaan</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Instellingen</string>
+    <string name="settings_dark_mode">Donkere modus</string>
+    <string name="settings_sound">Geluid bij transactie</string>
+    <string name="settings_vibration">Trilling bij transactie</string>
+    <string name="settings_nfc_enabled">NFC-betalingen inschakelen</string>
+    <string name="settings_default_starting_balance">Standaard startkapitaal</string>
+    <string name="settings_about">Over</string>
+    <string name="settings_language">Taal</string>
+    <string name="theme_system">Systeeminstelling</string>
+    <string name="theme_light">Licht</string>
+    <string name="theme_dark">Donker</string>
+
+    <!-- About / AI transparency -->
+    <string name="about_title">Over Monopoly Bank</string>
+    <string name="about_ai_disclosure">Deze app is (grotendeels) gebouwd met behulp van AI (Claude Code). Zie de LICENSE en README in de broncode voor details.</string>
+    <string name="about_privacy">Deze app verzamelt geen data, heeft geen internetverbinding nodig en slaat niets op buiten je eigen toestel.</string>
+    <string name="about_source">Broncode</string>
+    <string name="about_license">Licentie: MIT</string>
+    <string name="about_version">Versie %1$s</string>
+</resources>

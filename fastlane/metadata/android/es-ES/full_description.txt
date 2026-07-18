@@ -1,0 +1,21 @@
+Monopoly Bank sustituye el dinero de papel en las noches de Monopoly por un banco digital
+sencillo y totalmente local para 2 a 8 jugadores.
+
+Esta app fue construida (en gran parte) con ayuda de IA (Claude Code). Consulta el README del
+proyecto para más detalles.
+
+Funciones:
+* Totalmente sin conexión — sin acceso a internet, sin cuentas, sin analítica, nada sale de tu
+  dispositivo
+* Banca manual: paga al banco, recibe del banco o transfiere entre jugadores, con un teclado
+  rápido y accesos directos para los importes más habituales
+* Se permiten saldos negativos (con una advertencia clara), como en las reglas reales — un
+  jugador puede quedar en números rojos hasta que venda propiedades
+* NFC opcional: vincula una etiqueta NFC en blanco a un jugador y toca para identificar jugadores
+  y confirmar un pago. La entrada manual siempre funciona, con o sin hardware NFC
+* Historial de transacciones, por jugador y global
+* Modo claro y oscuro, con sonido/vibración opcionales
+* Incluye español, inglés y neerlandés
+
+Un solo dispositivo, se juega por turnos — todos los jugadores comparten un teléfono, sin cuentas
+ni sincronización.

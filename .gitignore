@@ -1,0 +1,28 @@
+*.iml
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Gradle
+.gradle/
+build/
+app/build/
+
+# Signing / keystores — NEVER commit these
+*.jks
+*.keystore
+keystore.properties
+
+# Android Studio
+*.hprof
+.navigation/
+captures/
+
+# Log
+*.log

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Monopoly Bank</string>
+
+    <!-- Main menu -->
+    <string name="main_menu_tagline">Your digital banker for game night</string>
+    <string name="main_menu_continue">Continue game</string>
+    <string name="main_menu_continue_players">%1$d players</string>
+    <string name="main_menu_new_game_section">Start a new game</string>
+    <string name="main_menu_mode_manual_title">Manual</string>
+    <string name="main_menu_mode_manual_desc">Enter amounts yourself with the keypad</string>
+    <string name="main_menu_mode_nfc_title">NFC</string>
+    <string name="main_menu_mode_nfc_desc">Tap NFC tags against your device to pay</string>
+    <string name="main_menu_mode_nfc_unavailable">NFC isn\'t available on this device</string>
+    <string name="main_menu_replace_game_title">Start a new game?</string>
+    <string name="main_menu_replace_game_message">This replaces your current game. Are you sure?</string>
+
+    <!-- Setup -->
+    <string name="setup_title">New game</string>
+    <string name="setup_player_count">Number of players</string>
+    <string name="setup_player_name_hint">Player %1$d name</string>
+    <string name="setup_starting_balance">Starting balance</string>
+    <string name="setup_start_game">Start game</string>
+
+    <!-- Home -->
+    <string name="home_title">Balances</string>
+    <string name="home_pay_bank">Pay the bank</string>
+    <string name="home_receive_bank">Receive from bank</string>
+    <string name="home_transfer">Transfer</string>
+    <string name="home_negative_balance_warning">Negative balance</string>
+    <string name="home_new_game">New game</string>
+    <string name="home_new_game_confirm_message">Are you sure you want to start a new game? The current game will be lost.</string>
+    <string name="home_declare_bankrupt">Declare bankrupt</string>
+    <string name="home_bankrupt_confirm_title">Declare %1$s bankrupt?</string>
+    <string name="home_bankrupt_confirm_message">Use this once %1$s can no longer pay and has nothing left to sell or mortgage. Their remaining debt is written off and they\'re out of the game. Past transactions stay visible in history.</string>
+    <string name="home_winner_title">%1$s wins!</string>
+    <string name="home_winner_back_to_menu">Back to main menu</string>
+
+    <!-- Transaction -->
+    <string name="transaction_amount">Amount</string>
+    <string name="transaction_confirm">Confirm</string>
+    <string name="transaction_cancel">Cancel</string>
+    <string name="transaction_large_amount_warning">This is a large amount. Are you sure?</string>
+    <string name="transaction_select_recipient">Choose recipient</string>
+    <string name="transaction_select_sender">Choose payer</string>
+
+    <!-- History -->
+    <string name="history_title">Transaction history</string>
+    <string name="history_empty">No transactions yet</string>
+    <string name="history_filter_all">All players</string>
+    <string name="bank_label">Bank</string>
+
+    <!-- NFC -->
+    <string name="nfc_not_available">NFC is not available on this device</string>
+    <string name="nfc_scan_prompt">Hold the tag against the device</string>
+    <string name="nfc_link_tag">Link tag to player</string>
+    <string name="nfc_manage_tags">Manage tags</string>
+    <string name="nfc_unlink">Unlink</string>
+    <string name="nfc_not_linked">Not linked</string>
+    <string name="nfc_linked_status">Linked</string>
+    <string name="nfc_unknown_tag">This tag isn\'t linked to a player</string>
+    <string name="nfc_cancel_scan">Cancel</string>
+    <string name="nfc_direction_pay">Pay</string>
+    <string name="nfc_direction_receive">Receive</string>
+    <string name="nfc_ready_prompt">Ready — hold a tag against the device</string>
+    <string name="link_tags_title">Link NFC tags</string>
+    <string name="link_tags_instruction">Link a tag to every player before you begin</string>
+    <string name="link_tags_progress">%1$d of %2$d players linked</string>
+    <string name="action_continue">Continue</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_dark_mode">Dark mode</string>
+    <string name="settings_sound">Sound on transaction</string>
+    <string name="settings_vibration">Vibration on transaction</string>
+    <string name="settings_nfc_enabled">Enable NFC payments</string>
+    <string name="settings_default_starting_balance">Default starting balance</string>
+    <string name="settings_about">About</string>
+    <string name="settings_language">Language</string>
+    <string name="theme_system">System default</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+
+    <!-- About / AI transparency -->
+    <string name="about_title">About Monopoly Bank</string>
+    <string name="about_ai_disclosure">This app was (largely) built with the help of AI (Claude Code). See the LICENSE and README in the source code for details.</string>
+    <string name="about_privacy">This app collects no data, requires no internet connection, and stores nothing outside your own device.</string>
+    <string name="about_source">Source code</string>
+    <string name="about_license">License: MIT</string>
+    <string name="about_version">Version %1$s</string>
+</resources>

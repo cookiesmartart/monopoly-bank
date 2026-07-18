@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Monopoly Bank</string>
+
+    <!-- Main menu -->
+    <string name="main_menu_tagline">Tu banco digital para noches de juego</string>
+    <string name="main_menu_continue">Continuar partida</string>
+    <string name="main_menu_continue_players">%1$d jugadores</string>
+    <string name="main_menu_new_game_section">Empezar una nueva partida</string>
+    <string name="main_menu_mode_manual_title">Manual</string>
+    <string name="main_menu_mode_manual_desc">Introduce los importes tú mismo con el teclado</string>
+    <string name="main_menu_mode_nfc_title">NFC</string>
+    <string name="main_menu_mode_nfc_desc">Toca etiquetas NFC con tu dispositivo para pagar</string>
+    <string name="main_menu_mode_nfc_unavailable">NFC no está disponible en este dispositivo</string>
+    <string name="main_menu_replace_game_title">¿Empezar una nueva partida?</string>
+    <string name="main_menu_replace_game_message">Esto sustituirá tu partida actual. ¿Estás seguro?</string>
+
+    <!-- Setup -->
+    <string name="setup_title">Nueva partida</string>
+    <string name="setup_player_count">Número de jugadores</string>
+    <string name="setup_player_name_hint">Nombre del jugador %1$d</string>
+    <string name="setup_starting_balance">Capital inicial</string>
+    <string name="setup_start_game">Empezar partida</string>
+
+    <!-- Home -->
+    <string name="home_title">Saldos</string>
+    <string name="home_pay_bank">Pagar al banco</string>
+    <string name="home_receive_bank">Recibir del banco</string>
+    <string name="home_transfer">Transferir</string>
+    <string name="home_negative_balance_warning">Saldo negativo</string>
+    <string name="home_new_game">Nueva partida</string>
+    <string name="home_new_game_confirm_message">¿Seguro que quieres empezar una nueva partida? La partida actual se perderá.</string>
+    <string name="home_declare_bankrupt">Declarar en bancarrota</string>
+    <string name="home_bankrupt_confirm_title">¿Declarar a %1$s en bancarrota?</string>
+    <string name="home_bankrupt_confirm_message">Usa esto cuando %1$s ya no pueda pagar y no le quede nada que vender ni hipotecar. La deuda restante se cancela y %1$s queda fuera de la partida. Las transacciones anteriores siguen visibles en el historial.</string>
+    <string name="home_winner_title">¡%1$s gana!</string>
+    <string name="home_winner_back_to_menu">Volver al menú principal</string>
+
+    <!-- Transaction -->
+    <string name="transaction_amount">Importe</string>
+    <string name="transaction_confirm">Confirmar</string>
+    <string name="transaction_cancel">Cancelar</string>
+    <string name="transaction_large_amount_warning">Este es un importe elevado. ¿Estás seguro?</string>
+    <string name="transaction_select_recipient">Elige destinatario</string>
+    <string name="transaction_select_sender">Elige pagador</string>
+
+    <!-- History -->
+    <string name="history_title">Historial de transacciones</string>
+    <string name="history_empty">Todavía no hay transacciones</string>
+    <string name="history_filter_all">Todos los jugadores</string>
+    <string name="bank_label">Banco</string>
+
+    <!-- NFC -->
+    <string name="nfc_not_available">NFC no está disponible en este dispositivo</string>
+    <string name="nfc_scan_prompt">Acerca la etiqueta al dispositivo</string>
+    <string name="nfc_link_tag">Vincular etiqueta a jugador</string>
+    <string name="nfc_manage_tags">Gestionar etiquetas</string>
+    <string name="nfc_unlink">Desvincular</string>
+    <string name="nfc_not_linked">No vinculado</string>
+    <string name="nfc_linked_status">Vinculado</string>
+    <string name="nfc_unknown_tag">Esta etiqueta no está vinculada a ningún jugador</string>
+    <string name="nfc_cancel_scan">Cancelar</string>
+    <string name="nfc_direction_pay">Pagar</string>
+    <string name="nfc_direction_receive">Recibir</string>
+    <string name="nfc_ready_prompt">Listo — acerca una etiqueta al dispositivo</string>
+    <string name="link_tags_title">Vincular etiquetas NFC</string>
+    <string name="link_tags_instruction">Vincula una etiqueta a cada jugador antes de empezar</string>
+    <string name="link_tags_progress">%1$d de %2$d jugadores vinculados</string>
+    <string name="action_continue">Continuar</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_dark_mode">Modo oscuro</string>
+    <string name="settings_sound">Sonido al hacer una transacción</string>
+    <string name="settings_vibration">Vibración al hacer una transacción</string>
+    <string name="settings_nfc_enabled">Activar pagos por NFC</string>
+    <string name="settings_default_starting_balance">Capital inicial predeterminado</string>
+    <string name="settings_about">Acerca de</string>
+    <string name="settings_language">Idioma</string>
+    <string name="theme_system">Predeterminado del sistema</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_dark">Oscuro</string>
+
+    <!-- About / AI transparency -->
+    <string name="about_title">Acerca de Monopoly Bank</string>
+    <string name="about_ai_disclosure">Esta app fue construida (en gran parte) con ayuda de IA (Claude Code). Consulta la LICENSE y el README en el código fuente para más detalles.</string>
+    <string name="about_privacy">Esta app no recopila datos, no necesita conexión a internet y no guarda nada fuera de tu propio dispositivo.</string>
+    <string name="about_source">Código fuente</string>
+    <string name="about_license">Licencia: MIT</string>
+    <string name="about_version">Versión %1$s</string>
+</resources>

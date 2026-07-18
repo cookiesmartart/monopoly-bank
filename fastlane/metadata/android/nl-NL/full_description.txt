@@ -1,0 +1,20 @@
+Monopoly Bank vervangt het papiergeld tijdens Monopoly-spelavonden door een simpele, volledig
+lokale digitale bankier voor 2 tot 8 spelers.
+
+Deze app is (grotendeels) gebouwd met behulp van AI (Claude Code). Zie de README van het project
+voor details.
+
+Functies:
+* Volledig offline — geen netwerktoegang, geen accounts, geen analytics, niets verlaat je toestel
+* Handmatig bankieren: betaal aan de bank, ontvang van de bank, of maak over tussen spelers, met
+  een snel keypad en snelknoppen voor veelgebruikte bedragen
+* Negatieve saldi zijn toegestaan (met duidelijke waarschuwing), conform de echte regels — een
+  speler mag tijdelijk in de min staan totdat hij bezittingen verkoopt
+* NFC optioneel: koppel een lege NFC-sticker aan een speler en tik om spelers te identificeren en
+  een betaling te bevestigen. Handmatige invoer werkt altijd, met of zonder NFC-hardware
+* Transactiegeschiedenis, per speler en globaal
+* Donkere en lichte modus, met optioneel geluid/trilling
+* Inclusief Nederlands, Engels en Spaans
+
+Eén toestel, om de beurt spelen — alle spelers delen één telefoon, geen accounts of synchronisatie
+nodig.
