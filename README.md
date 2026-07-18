@@ -34,6 +34,9 @@ source or considering a contribution, you should know that going in.
   declare them bankrupt: their remaining debt is written off and they're removed from the active
   game (past transactions stay visible in history). When one player remains, a winner screen
   appears automatically.
+- **Free Parking pot (optional, for the rule-benders).** If you don't play by the official
+  rules — fines and taxes can go into a shared pot instead of the bank, won by whoever lands on
+  Free Parking next. Off by default; toggle it per game in Setup, or mid-game via Settings.
 - **Transaction history**, both global and per player.
 - **Configurable starting balance** (defaults to €1500, per the standard rules).
 - **Light and dark mode**, plus optional sound/vibration feedback on transactions.
@@ -42,7 +45,9 @@ source or considering a contribution, you should know that going in.
 
 ## Screenshots
 
-_Coming soon — will be added once the first tagged release is built._
+![Main menu](screenshots/Screenshot_20260718_231112.png)
+
+_More coming soon._
 
 ## Installation
 

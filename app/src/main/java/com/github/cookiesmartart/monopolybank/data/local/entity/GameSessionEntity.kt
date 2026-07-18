@@ -9,5 +9,7 @@ data class GameSessionEntity(
     val createdAt: Long,
     val startingBalance: Long,
     val isActive: Boolean,
-    val endedAt: Long? = null
+    val endedAt: Long? = null,
+    val freeParkingPotEnabled: Boolean = false,
+    val freeParkingPot: Long = 0
 )

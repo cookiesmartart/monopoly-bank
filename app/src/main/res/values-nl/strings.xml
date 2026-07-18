@@ -22,11 +22,17 @@
     <string name="setup_starting_balance">Startkapitaal</string>
     <string name="setup_start_game">Start spel</string>
 
+    <!-- Free Parking pot -->
+    <string name="free_parking_pot_title">Vrij Parkeren-pot</string>
+    <string name="free_parking_pot_desc">Boetes en belastingen gaan in een pot in plaats van naar de bank. Wie daarna op Vrij Parkeren landt, wint de pot.</string>
+    <string name="free_parking_pot_claim_title">Wie wint de pot?</string>
+
     <!-- Home -->
     <string name="home_title">Saldi</string>
     <string name="home_pay_bank">Betaal aan bank</string>
     <string name="home_receive_bank">Ontvang van bank</string>
     <string name="home_transfer">Overmaken</string>
+    <string name="home_pay_pot">Betaal aan Vrij Parkeren-pot</string>
     <string name="home_negative_balance_warning">Negatief saldo</string>
     <string name="home_new_game">Nieuw spel</string>
     <string name="home_new_game_confirm_message">Weet je zeker dat je een nieuw spel wilt starten? Het huidige spel gaat verloren.</string>

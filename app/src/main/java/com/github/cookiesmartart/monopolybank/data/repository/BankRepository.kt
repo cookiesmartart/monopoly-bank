@@ -28,7 +28,8 @@ class BankRepository(private val db: MonopolyDatabase) {
     suspend fun startNewGame(
         playerNames: List<String>,
         playerColors: List<String>,
-        startingBalance: Long
+        startingBalance: Long,
+        freeParkingPotEnabled: Boolean = false
     ): Long = db.withTransaction {
         gameSessionDao.deactivateActiveSession(System.currentTimeMillis())
 
@@ -36,7 +37,8 @@ class BankRepository(private val db: MonopolyDatabase) {
             GameSessionEntity(
                 createdAt = System.currentTimeMillis(),
                 startingBalance = startingBalance,
-                isActive = true
+                isActive = true,
+                freeParkingPotEnabled = freeParkingPotEnabled
             )
         )
 
@@ -119,6 +121,51 @@ class BankRepository(private val db: MonopolyDatabase) {
                 )
             )
         }
+    }
+
+    suspend fun payToPot(gameSessionId: Long, playerId: Long, amount: Long, label: String? = null) {
+        db.withTransaction {
+            val player = requireNotNull(playerDao.getPlayer(playerId)) { "Unknown player: $playerId" }
+            val session = requireNotNull(gameSessionDao.getActiveSession()) { "No active session" }
+            val newBalance = BankMath.payToBank(player.balance, amount)
+            playerDao.updateBalance(playerId, newBalance)
+            gameSessionDao.setFreeParkingPot(gameSessionId, session.freeParkingPot + amount)
+            transactionDao.insert(
+                TransactionEntity(
+                    gameSessionId = gameSessionId,
+                    timestamp = System.currentTimeMillis(),
+                    fromPlayerId = playerId,
+                    toPlayerId = null,
+                    amount = amount,
+                    label = label
+                )
+            )
+        }
+    }
+
+    suspend fun claimPot(gameSessionId: Long, playerId: Long, label: String? = null) {
+        db.withTransaction {
+            val player = requireNotNull(playerDao.getPlayer(playerId)) { "Unknown player: $playerId" }
+            val session = requireNotNull(gameSessionDao.getActiveSession()) { "No active session" }
+            val potAmount = session.freeParkingPot
+            val newBalance = BankMath.receiveFromBank(player.balance, potAmount)
+            playerDao.updateBalance(playerId, newBalance)
+            gameSessionDao.setFreeParkingPot(gameSessionId, 0)
+            transactionDao.insert(
+                TransactionEntity(
+                    gameSessionId = gameSessionId,
+                    timestamp = System.currentTimeMillis(),
+                    fromPlayerId = null,
+                    toPlayerId = playerId,
+                    amount = potAmount,
+                    label = label
+                )
+            )
+        }
+    }
+
+    suspend fun setFreeParkingPotEnabled(sessionId: Long, enabled: Boolean) {
+        gameSessionDao.setFreeParkingPotEnabled(sessionId, enabled)
     }
 
     suspend fun linkNfcTag(playerId: Long, nfcTagId: String?) {

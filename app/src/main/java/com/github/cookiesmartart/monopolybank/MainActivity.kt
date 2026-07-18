@@ -14,6 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.github.cookiesmartart.monopolybank.data.settings.AppSettings
@@ -88,6 +89,7 @@ private fun MonopolyBankRoot(
     var screen by remember { mutableStateOf<Screen>(Screen.MainMenu) }
     val nfcAvailable = nfcController.isHardwareAvailable && settings.nfcEnabled
     val allTagsLinked = uiState.players.isNotEmpty() && uiState.players.all { it.nfcTagId != null }
+    val freeParkingPotLabel = stringResource(R.string.free_parking_pot_title)
 
     if (uiState.isLoading) return
 
@@ -105,8 +107,8 @@ private fun MonopolyBankRoot(
         is Screen.Setup -> {
             BackHandler { screen = Screen.MainMenu }
             SetupScreen(
-                onStartGame = { names, colors, startingBalance ->
-                    viewModel.startNewGame(names, colors, startingBalance)
+                onStartGame = { names, colors, startingBalance, freeParkingPotEnabled ->
+                    viewModel.startNewGame(names, colors, startingBalance, freeParkingPotEnabled)
                     settingsViewModel.setNfcEnabled(currentScreen.nfcMode)
                     screen = if (currentScreen.nfcMode) Screen.LinkTags else Screen.Home
                 },
@@ -144,7 +146,11 @@ private fun MonopolyBankRoot(
                 onMarkBankrupt = { playerId -> viewModel.markBankrupt(playerId) },
                 soundEnabled = settings.soundEnabled,
                 vibrationEnabled = settings.vibrationEnabled,
-                onOpenSettings = { screen = Screen.Settings }
+                onOpenSettings = { screen = Screen.Settings },
+                freeParkingPotEnabled = uiState.session?.freeParkingPotEnabled ?: false,
+                freeParkingPot = uiState.session?.freeParkingPot ?: 0,
+                onPayToPot = { playerId, amount -> viewModel.payToPot(playerId, amount, freeParkingPotLabel) },
+                onClaimPot = { playerId -> viewModel.claimPot(playerId, freeParkingPotLabel) }
             )
         }
 
@@ -162,11 +168,13 @@ private fun MonopolyBankRoot(
             SettingsScreen(
                 settings = settings,
                 nfcHardwareAvailable = nfcController.isHardwareAvailable,
+                activeSession = uiState.session,
                 onThemeModeChange = { settingsViewModel.setThemeMode(it) },
                 onSoundChange = { settingsViewModel.setSoundEnabled(it) },
                 onVibrationChange = { settingsViewModel.setVibrationEnabled(it) },
                 onNfcChange = { settingsViewModel.setNfcEnabled(it) },
                 onDefaultStartingBalanceChange = { settingsViewModel.setDefaultStartingBalance(it) },
+                onFreeParkingPotToggle = { viewModel.setFreeParkingPotEnabled(it) },
                 onOpenAbout = { screen = Screen.About },
                 onBack = { screen = Screen.Home }
             )

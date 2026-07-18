@@ -22,11 +22,17 @@
     <string name="setup_starting_balance">Starting balance</string>
     <string name="setup_start_game">Start game</string>
 
+    <!-- Free Parking pot -->
+    <string name="free_parking_pot_title">Free Parking pot</string>
+    <string name="free_parking_pot_desc">Fines and taxes go into a pot instead of the bank. Whoever lands on Free Parking next wins it.</string>
+    <string name="free_parking_pot_claim_title">Who claims the pot?</string>
+
     <!-- Home -->
     <string name="home_title">Balances</string>
     <string name="home_pay_bank">Pay the bank</string>
     <string name="home_receive_bank">Receive from bank</string>
     <string name="home_transfer">Transfer</string>
+    <string name="home_pay_pot">Pay to Free Parking pot</string>
     <string name="home_negative_balance_warning">Negative balance</string>
     <string name="home_new_game">New game</string>
     <string name="home_new_game_confirm_message">Are you sure you want to start a new game? The current game will be lost.</string>

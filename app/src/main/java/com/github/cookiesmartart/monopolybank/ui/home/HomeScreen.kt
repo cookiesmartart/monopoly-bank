@@ -21,6 +21,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material.icons.filled.History
+import androidx.compose.material.icons.filled.LocalParking
 import androidx.compose.material.icons.filled.Nfc
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Warning
@@ -78,6 +79,10 @@ fun HomeScreen(
     onMarkBankrupt: (playerId: Long) -> Unit,
     soundEnabled: Boolean,
     vibrationEnabled: Boolean,
+    freeParkingPotEnabled: Boolean = false,
+    freeParkingPot: Long = 0,
+    onPayToPot: (playerId: Long, amount: Long) -> Unit = { _, _ -> },
+    onClaimPot: (playerId: Long) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     val activePlayers = players.filter { !it.isBankrupt }
@@ -97,6 +102,7 @@ fun HomeScreen(
     var showManageTags by remember { mutableStateOf(false) }
     var linkingPlayer by remember { mutableStateOf<PlayerEntity?>(null) }
     var bankruptCandidate by remember { mutableStateOf<PlayerEntity?>(null) }
+    var showPotClaim by remember { mutableStateOf(false) }
     val context = LocalContext.current
     val unknownTagMessage = stringResource(R.string.nfc_unknown_tag)
 
@@ -163,6 +169,14 @@ fun HomeScreen(
                     NfcStatusBanner(errorMessage = scanError)
                 }
             }
+            if (freeParkingPotEnabled) {
+                item {
+                    FreeParkingPotBanner(
+                        potAmount = freeParkingPot,
+                        onClick = { showPotClaim = true }
+                    )
+                }
+            }
             items(activePlayers, key = { it.id }) { player ->
                 PlayerBalanceCard(
                     player = player,
@@ -221,9 +235,11 @@ fun HomeScreen(
         is TransactionFlowState.ChooseAction -> PlayerActionSheet(
             player = state.player,
             sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
+            showPotOption = freeParkingPotEnabled,
             onPayBank = { flowState = TransactionFlowState.EnterAmount(TransactionKind.PayBank(state.player)) },
             onReceiveBank = { flowState = TransactionFlowState.EnterAmount(TransactionKind.ReceiveBank(state.player)) },
             onTransfer = { flowState = TransactionFlowState.ChooseRecipient(state.player) },
+            onPayToPot = { flowState = TransactionFlowState.EnterAmount(TransactionKind.PayToPot(state.player)) },
             onDismiss = { flowState = TransactionFlowState.None }
         )
 
@@ -244,7 +260,7 @@ fun HomeScreen(
                 flowState = if (amount >= LARGE_AMOUNT_THRESHOLD) {
                     TransactionFlowState.ConfirmLargeAmount(state.kind, amount)
                 } else {
-                    executeTransaction(state.kind, amount, onPayToBank, onReceiveFromBank, onTransfer)
+                    executeTransaction(state.kind, amount, onPayToBank, onReceiveFromBank, onTransfer, onPayToPot)
                     playTransactionFeedback(context, soundEnabled, vibrationEnabled)
                     TransactionFlowState.None
                 }
@@ -255,7 +271,7 @@ fun HomeScreen(
         is TransactionFlowState.ConfirmLargeAmount -> LargeAmountConfirmDialog(
             amount = state.amount,
             onConfirm = {
-                executeTransaction(state.kind, state.amount, onPayToBank, onReceiveFromBank, onTransfer)
+                executeTransaction(state.kind, state.amount, onPayToBank, onReceiveFromBank, onTransfer, onPayToPot)
                 playTransactionFeedback(context, soundEnabled, vibrationEnabled)
                 flowState = TransactionFlowState.None
             },
@@ -270,7 +286,7 @@ fun HomeScreen(
             otherPlayers = activePlayers.filter { it.id != reviewing.player.id },
             sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
             onConfirm = { kind, amount ->
-                executeTransaction(kind, amount, onPayToBank, onReceiveFromBank, onTransfer)
+                executeTransaction(kind, amount, onPayToBank, onReceiveFromBank, onTransfer, onPayToPot)
                 playTransactionFeedback(context, soundEnabled, vibrationEnabled)
                 nfcState = NfcQuickPayState.Scanning
             },
@@ -306,6 +322,19 @@ fun HomeScreen(
             onDispose { nfcController.stopScanning() }
         }
     }
+
+    if (showPotClaim) {
+        PotClaimSheet(
+            players = activePlayers,
+            sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
+            onSelect = { player ->
+                onClaimPot(player.id)
+                playTransactionFeedback(context, soundEnabled, vibrationEnabled)
+                showPotClaim = false
+            },
+            onDismiss = { showPotClaim = false }
+        )
+    }
 }
 
 fun executeTransaction(
@@ -313,12 +342,14 @@ fun executeTransaction(
     amount: Long,
     onPayToBank: (Long, Long) -> Unit,
     onReceiveFromBank: (Long, Long) -> Unit,
-    onTransfer: (Long, Long, Long) -> Unit
+    onTransfer: (Long, Long, Long) -> Unit,
+    onPayToPot: (Long, Long) -> Unit
 ) {
     when (kind) {
         is TransactionKind.PayBank -> onPayToBank(kind.player.id, amount)
         is TransactionKind.ReceiveBank -> onReceiveFromBank(kind.player.id, amount)
         is TransactionKind.Transfer -> onTransfer(kind.from.id, kind.to.id, amount)
+        is TransactionKind.PayToPot -> onPayToPot(kind.player.id, amount)
     }
 }
 
@@ -402,6 +433,42 @@ private fun NfcStatusBanner(errorMessage: String?) {
                     )
                 }
             }
+        }
+    }
+}
+
+@Composable
+private fun FreeParkingPotBanner(potAmount: Long, onClick: () -> Unit) {
+    Card(
+        onClick = onClick,
+        enabled = potAmount > 0,
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
+        shape = RoundedCornerShape(14.dp),
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Row(
+            modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                Icons.Filled.LocalParking,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                modifier = Modifier.size(20.dp)
+            )
+            Text(
+                text = stringResource(R.string.free_parking_pot_title),
+                style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.onSecondaryContainer,
+                modifier = Modifier
+                    .padding(start = 10.dp)
+                    .weight(1f)
+            )
+            Text(
+                text = formatMoney(potAmount),
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSecondaryContainer
+            )
         }
     }
 }

@@ -41,9 +41,11 @@ import com.github.cookiesmartart.monopolybank.ui.game.toColor
 fun PlayerActionSheet(
     player: PlayerEntity,
     sheetState: SheetState,
+    showPotOption: Boolean,
     onPayBank: () -> Unit,
     onReceiveBank: () -> Unit,
     onTransfer: () -> Unit,
+    onPayToPot: () -> Unit,
     onDismiss: () -> Unit
 ) {
     ModalBottomSheet(onDismissRequest = onDismiss, sheetState = sheetState) {
@@ -61,6 +63,11 @@ fun PlayerActionSheet(
                 }
                 Button(onClick = onTransfer, modifier = Modifier.fillMaxWidth()) {
                     Text(stringResource(R.string.home_transfer))
+                }
+                if (showPotOption) {
+                    Button(onClick = onPayToPot, modifier = Modifier.fillMaxWidth()) {
+                        Text(stringResource(R.string.home_pay_pot))
+                    }
                 }
             }
         }
@@ -85,6 +92,39 @@ fun RecipientPickerSheet(
             )
             LazyColumn {
                 items(players.filter { it.id != exclude.id }) { candidate ->
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { onSelect(candidate) }
+                            .padding(vertical = 12.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        PlayerSwatch(candidate)
+                        Text(candidate.name, modifier = Modifier.padding(start = 12.dp))
+                    }
+                }
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun PotClaimSheet(
+    players: List<PlayerEntity>,
+    sheetState: SheetState,
+    onSelect: (PlayerEntity) -> Unit,
+    onDismiss: () -> Unit
+) {
+    ModalBottomSheet(onDismissRequest = onDismiss, sheetState = sheetState) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = stringResource(R.string.free_parking_pot_claim_title),
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+            LazyColumn {
+                items(players, key = { it.id }) { candidate ->
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -164,6 +204,7 @@ private fun TransactionKindHeader(kind: TransactionKind) {
     when (kind) {
         is TransactionKind.PayBank -> PlayerHeader(kind.player, subtitleRes = R.string.home_pay_bank)
         is TransactionKind.ReceiveBank -> PlayerHeader(kind.player, subtitleRes = R.string.home_receive_bank)
+        is TransactionKind.PayToPot -> PlayerHeader(kind.player, subtitleRes = R.string.home_pay_pot)
         is TransactionKind.Transfer -> Row(verticalAlignment = Alignment.CenterVertically) {
             PlayerSwatch(kind.from)
             Text(kind.from.name, modifier = Modifier.padding(start = 8.dp, end = 16.dp))

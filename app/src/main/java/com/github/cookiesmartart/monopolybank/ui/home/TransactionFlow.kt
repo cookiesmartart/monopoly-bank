@@ -9,6 +9,7 @@ sealed interface TransactionKind {
     data class PayBank(val player: PlayerEntity) : TransactionKind
     data class ReceiveBank(val player: PlayerEntity) : TransactionKind
     data class Transfer(val from: PlayerEntity, val to: PlayerEntity) : TransactionKind
+    data class PayToPot(val player: PlayerEntity) : TransactionKind
 }
 
 sealed interface TransactionFlowState {

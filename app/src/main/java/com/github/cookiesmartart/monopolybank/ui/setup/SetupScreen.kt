@@ -31,8 +31,10 @@ import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -62,13 +64,14 @@ private val BalancePresets = listOf(1000L, 1500L, 2000L, 3000L)
 
 @Composable
 fun SetupScreen(
-    onStartGame: (names: List<String>, colors: List<String>, startingBalance: Long) -> Unit,
+    onStartGame: (names: List<String>, colors: List<String>, startingBalance: Long, freeParkingPotEnabled: Boolean) -> Unit,
     defaultStartingBalance: Long = 1500L,
     modifier: Modifier = Modifier
 ) {
     val names = remember { mutableStateListOf(*Array(DEFAULT_PLAYERS) { "" }) }
     val colors = remember { mutableStateListOf(*Array(DEFAULT_PLAYERS) { PlayerColorPalette[it] }) }
     var startingBalanceText by remember(defaultStartingBalance) { mutableStateOf(defaultStartingBalance.toString()) }
+    var freeParkingPotEnabled by remember { mutableStateOf(false) }
 
     val startingBalance = startingBalanceText.toLongOrNull()
     val canStart = names.all { it.isNotBlank() } && startingBalance != null && startingBalance > 0
@@ -151,8 +154,19 @@ fun SetupScreen(
                     .padding(horizontal = 20.dp, vertical = 12.dp)
             )
 
+            ListItem(
+                headlineContent = { Text(stringResource(R.string.free_parking_pot_title)) },
+                supportingContent = { Text(stringResource(R.string.free_parking_pot_desc)) },
+                trailingContent = {
+                    Switch(checked = freeParkingPotEnabled, onCheckedChange = { freeParkingPotEnabled = it })
+                },
+                modifier = Modifier.padding(horizontal = 4.dp)
+            )
+
             Button(
-                onClick = { onStartGame(names.map { it.trim() }, colors.toList(), startingBalance ?: 0L) },
+                onClick = {
+                    onStartGame(names.map { it.trim() }, colors.toList(), startingBalance ?: 0L, freeParkingPotEnabled)
+                },
                 enabled = canStart,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -252,6 +266,6 @@ private fun PlayerRow(
 @Composable
 private fun SetupScreenPreview() {
     MonopolyBankTheme(darkTheme = false) {
-        SetupScreen(onStartGame = { _, _, _ -> })
+        SetupScreen(onStartGame = { _, _, _, _ -> })
     }
 }

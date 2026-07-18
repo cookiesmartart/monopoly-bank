@@ -42,9 +42,14 @@ class GameViewModel(private val repository: BankRepository) : ViewModel() {
     private val _events = MutableSharedFlow<GameEvent>()
     val events: SharedFlow<GameEvent> = _events
 
-    fun startNewGame(playerNames: List<String>, playerColors: List<String>, startingBalance: Long) {
+    fun startNewGame(
+        playerNames: List<String>,
+        playerColors: List<String>,
+        startingBalance: Long,
+        freeParkingPotEnabled: Boolean = false
+    ) {
         viewModelScope.launch {
-            repository.startNewGame(playerNames, playerColors, startingBalance)
+            repository.startNewGame(playerNames, playerColors, startingBalance, freeParkingPotEnabled)
         }
     }
 
@@ -72,6 +77,27 @@ class GameViewModel(private val repository: BankRepository) : ViewModel() {
         val sessionId = uiState.value.session?.id ?: return
         viewModelScope.launch {
             runBankAction { repository.transfer(sessionId, fromPlayerId, toPlayerId, amount, label) }
+        }
+    }
+
+    fun payToPot(playerId: Long, amount: Long, label: String? = null) {
+        val sessionId = uiState.value.session?.id ?: return
+        viewModelScope.launch {
+            runBankAction { repository.payToPot(sessionId, playerId, amount, label) }
+        }
+    }
+
+    fun claimPot(playerId: Long, label: String? = null) {
+        val sessionId = uiState.value.session?.id ?: return
+        viewModelScope.launch {
+            runBankAction { repository.claimPot(sessionId, playerId, label) }
+        }
+    }
+
+    fun setFreeParkingPotEnabled(enabled: Boolean) {
+        val sessionId = uiState.value.session?.id ?: return
+        viewModelScope.launch {
+            repository.setFreeParkingPotEnabled(sessionId, enabled)
         }
     }
 

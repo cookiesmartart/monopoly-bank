@@ -22,11 +22,17 @@
     <string name="setup_starting_balance">Capital inicial</string>
     <string name="setup_start_game">Empezar partida</string>
 
+    <!-- Free Parking pot -->
+    <string name="free_parking_pot_title">Bote de Parking Gratuito</string>
+    <string name="free_parking_pot_desc">Las multas e impuestos van a un bote en lugar de al banco. Quien caiga después en Parking Gratuito se lleva el bote.</string>
+    <string name="free_parking_pot_claim_title">¿Quién se lleva el bote?</string>
+
     <!-- Home -->
     <string name="home_title">Saldos</string>
     <string name="home_pay_bank">Pagar al banco</string>
     <string name="home_receive_bank">Recibir del banco</string>
     <string name="home_transfer">Transferir</string>
+    <string name="home_pay_pot">Pagar al bote de Parking Gratuito</string>
     <string name="home_negative_balance_warning">Saldo negativo</string>
     <string name="home_new_game">Nueva partida</string>
     <string name="home_new_game_confirm_message">¿Seguro que quieres empezar una nueva partida? La partida actual se perderá.</string>

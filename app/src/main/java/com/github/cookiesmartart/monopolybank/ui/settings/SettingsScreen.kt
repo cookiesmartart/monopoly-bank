@@ -36,6 +36,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.github.cookiesmartart.monopolybank.R
+import com.github.cookiesmartart.monopolybank.data.local.entity.GameSessionEntity
 import com.github.cookiesmartart.monopolybank.data.settings.AppSettings
 import com.github.cookiesmartart.monopolybank.data.settings.ThemeMode
 
@@ -44,11 +45,13 @@ import com.github.cookiesmartart.monopolybank.data.settings.ThemeMode
 fun SettingsScreen(
     settings: AppSettings,
     nfcHardwareAvailable: Boolean,
+    activeSession: GameSessionEntity?,
     onThemeModeChange: (ThemeMode) -> Unit,
     onSoundChange: (Boolean) -> Unit,
     onVibrationChange: (Boolean) -> Unit,
     onNfcChange: (Boolean) -> Unit,
     onDefaultStartingBalanceChange: (Long) -> Unit,
+    onFreeParkingPotToggle: (Boolean) -> Unit,
     onOpenAbout: () -> Unit,
     onBack: () -> Unit,
     modifier: Modifier = Modifier
@@ -116,6 +119,18 @@ fun SettingsScreen(
                     value = settings.defaultStartingBalance,
                     onValueChange = onDefaultStartingBalanceChange
                 )
+            }
+
+            activeSession?.let { session ->
+                item { HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp)) }
+                item {
+                    ToggleRow(
+                        label = stringResource(R.string.free_parking_pot_title),
+                        subtitle = stringResource(R.string.free_parking_pot_desc),
+                        checked = session.freeParkingPotEnabled,
+                        onCheckedChange = onFreeParkingPotToggle
+                    )
+                }
             }
 
             item { HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp)) }
